@@ -1,3 +1,3 @@
-// <%= class_name %> frontend scripts for Archangel
+// ArchangelPosts frontend scripts for Archangel
 //
 //= require_self

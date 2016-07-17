@@ -1,3 +1,3 @@
-// <%= class_name %> admin scripts for Archangel
+// ArchangelPosts admin scripts for Archangel
 //
 //= require_self
