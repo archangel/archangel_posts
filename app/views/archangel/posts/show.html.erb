@@ -1,0 +1,19 @@
+<article>
+  <h2><%= @post.title %></h2>
+
+  <p class="lead">
+    <%= Archangel.t("archangel_posts.posted_by") %> <%= author_link(@post) %>
+  </p>
+
+  <p>
+    <span class="glyphicon glyphicon-time"></span> <%= Archangel.t("archangel_posts.posted_on") %> <%= posted_at(@post) %>
+  </p>
+
+  <div class="feature">
+    <%= image_tag(@post.feature.url, alt: "", class: "img-responsive") %>
+  </div>
+
+  <div class="body">
+    <%= @post.content %>
+  </div>
+</article>

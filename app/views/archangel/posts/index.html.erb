@@ -1,0 +1,25 @@
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <article>
+      <h2>
+        <%= link_to(post.title, post_path(post)) %>
+      </h2>
+
+      <p class="lead">
+        <%= Archangel.t("archangel_posts.posted_by") %> <%= author_link(post) %>
+      </p>
+
+      <p>
+        <span class="glyphicon glyphicon-time"></span> <%= Archangel.t("archangel_posts.posted_on") %> <%= posted_at(post) %>
+      </p>
+
+      <div class="feature">
+        <%= image_tag(post.feature.url, alt: "", class: "img-responsive") %>
+      </div>
+
+      <div class="body">
+        <%= post.excerpt %>
+      </div>
+    </article>
+  <% end %>
+<% end %>

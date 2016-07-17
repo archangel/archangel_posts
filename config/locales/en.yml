@@ -1,4 +1,5 @@
 en:
   archangel:
     archangel_posts:
-      hello: "Hello world"
+      posted_by: by
+      posted_on: Posted on

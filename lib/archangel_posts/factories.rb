@@ -1,7 +1,28 @@
 FactoryGirl.define do
-  # Define your Spree extensions Factories within this file to enable
-  # applications, and other extensions to use and override them.
-  #
-  # Example adding this to your spec_helper will load these Factories for use:
-  # require "archangel_posts/factories"
+  factory :post, class: Archangel::Post do
+    author
+    sequence(:title) { |n| "Post #{n} Title" }
+    sequence(:slug) { |n| "post-#{n}-title" }
+    content "Content of the post"
+    excerpt "Excerpt of the post"
+    meta_keywords "very, useful, keywords"
+    meta_description "This is the default description of the post."
+    published_at { Time.current }
+
+    trait :feature do
+      feature { File.new(uploader_test_image) }
+    end
+
+    trait :unpublished do
+      published_at nil
+    end
+
+    trait :future do
+      published_at { Time.current + 1.week }
+    end
+
+    trait :deleted do
+      deleted_at { Time.current }
+    end
+  end
 end
