@@ -42,14 +42,5 @@ Archangel::Engine.routes.draw do
     get "/:year/:month/:slug", to: "posts#show",
                                as: :post,
                                constraints: { year: /\d{4}/, month: /\d{2}/ }
-    # GET /blog/categories
-    # GET /blog/categories/page/[PAGE]
-    # GET /blog/categories/[SLUG]
-    resources :categories, only: [:index, :show], concerns: [:paginatable]
-
-    # GET /blog/tags
-    # GET /blog/tags/page/[PAGE]
-    # GET /blog/tags/[SLUG]
-    resources :tags, only: [:index, :show], concerns: [:paginatable]
   end
 end
