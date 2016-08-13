@@ -24,7 +24,7 @@ module Archangel
     def set_post
       path = [
         params[:year],
-        "%02d" % params[:month],
+        params[:month],
         params[:slug]
       ].join("/")
 
