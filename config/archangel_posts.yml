@@ -1,0 +1,12 @@
+defaults: &defaults
+  # Posts root path. Default is `blog`.
+  posts_path: blog
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

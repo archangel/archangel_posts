@@ -16,6 +16,10 @@ module ArchangelPosts
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    initializer "archangel_posts.configurations" do |app|
+      app.config.archangel.config << ["archangel_posts"]
+    end
+
     def self.activate
       Dir[File.join(__dir__, "../../app/**/*_decorator*.rb")].each do |klass|
         Rails.application.config.cache_classes ? require(klass) : load(klass)
