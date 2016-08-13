@@ -2,6 +2,11 @@
 
 **ArchangelPosts is currently under development. It is not ready for production use.**
 
+[![Travis CI](https://travis-ci.org/archangel/archangel_posts.svg?branch=master)](https://travis-ci.org/archangel/archangel_posts)
+[![Coverage Status](https://coveralls.io/repos/github/archangel/archangel_posts/badge.svg?branch=master)](https://coveralls.io/github/archangel/archangel_posts?branch=master)
+[![Code Climate](https://codeclimate.com/github/archangel/archangel_posts/badges/gpa.svg)](https://codeclimate.com/github/archangel/archangel_posts)
+[![Dependency Status](https://gemnasium.com/badges/github.com/archangel/archangel_posts.svg)](https://gemnasium.com/github.com/archangel/archangel_posts)
+
 Introduction goes here.
 
 ## Table of contents
