@@ -7,7 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/archangel/archangel_posts/badges/gpa.svg)](https://codeclimate.com/github/archangel/archangel_posts)
 [![Dependency Status](https://gemnasium.com/badges/github.com/archangel/archangel_posts.svg)](https://gemnasium.com/github.com/archangel/archangel_posts)
 
-Introduction goes here.
+Posts for Archangel
 
 ## Table of contents
 
