@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "capybara"
   s.add_development_dependency "coffee-rails"
+  s.add_development_dependency "coveralls"
   s.add_development_dependency "database_cleaner", "~> 1.5"
   s.add_development_dependency "factory_girl_rails", "~> 4.7"
   s.add_development_dependency "poltergeist"
