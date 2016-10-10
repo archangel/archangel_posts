@@ -4,6 +4,7 @@ module Archangel
 
     # Callbacks
     before_validation :parameterize_slug
+    before_save :stringify_meta_keywords
     before_save :build_path_before_save
     after_destroy :column_reset
 
@@ -13,7 +14,6 @@ module Archangel
     # Validation
     validates :author_id, presence: true
     validates :content, presence: true, allow_blank: true
-    validates :excerpt, presence: true, allow_blank: true
     validates :path, uniqueness: true
     validates :published_at, allow_blank: true, date: true
     validates :slug, presence: true
@@ -26,6 +26,12 @@ module Archangel
     has_many :categories, through: :categorizations
     has_many :taggings, as: :taggable
     has_many :tags, through: :taggings
+
+    # Nested attributes
+    accepts_nested_attributes_for :categories, reject_if: :all_blank,
+                                               allow_destroy: true
+    accepts_nested_attributes_for :tags, reject_if: :all_blank,
+                                         allow_destroy: true
 
     # Default scope
     default_scope { order(published_at: :desc) }
@@ -51,14 +57,24 @@ module Archangel
 
     scope :in_year_and_month, ->(year, month) { in_month(month).in_year(year) }
 
-    scope :published_this_month, lambda {
-      where(published_at: Time.now.beginning_of_month..Time.now)
+    scope :with_category, lambda { |category|
+      joins(:categories).where("archangel_categories.slug = ?", category)
+    }
+
+    scope :with_tag, lambda { |tag|
+      joins(:tags).where("archangel_tags.slug = ?", tag)
     }
 
     protected
 
     def parameterize_slug
       self.slug = slug.to_s.downcase.parameterize
+    end
+
+    def stringify_meta_keywords
+      keywords = parse_keywords(meta_keywords)
+
+      self.meta_keywords = keywords.compact.reject(&:blank?).join(",")
     end
 
     def build_path_before_save
@@ -71,6 +87,12 @@ module Archangel
     def column_reset
       self.slug = "#{Time.current.to_i}_#{slug}"
       self.save
+    end
+
+    def parse_keywords(keywords)
+      JSON.parse(keywords)
+    rescue
+      keywords.to_s.split(",")
     end
   end
 end

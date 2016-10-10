@@ -12,30 +12,9 @@ Gem::Specification.new do |s|
   s.description = "Description of ArchangelPosts."
   s.license     = "MIT"
 
-  s.files = Dir[
-    "{app,config,db,lib}/**/*",
-    "MIT-LICENSE",
-    "Rakefile",
-    "README.md"
-  ]
+  s.files       = `git ls-files`.split($\)
 
   s.required_ruby_version = ">= 2.2.2"
 
   s.add_dependency "archangel", "~> 0.0.1"
-
-  s.add_development_dependency "capybara"
-  s.add_development_dependency "coffee-rails"
-  s.add_development_dependency "coveralls"
-  s.add_development_dependency "database_cleaner", "~> 1.5"
-  s.add_development_dependency "factory_girl_rails", "~> 4.7"
-  s.add_development_dependency "launchy"
-  s.add_development_dependency "poltergeist"
-  s.add_development_dependency "pry-byebug"
-  s.add_development_dependency "rails-controller-testing", "~> 1.0"
-  s.add_development_dependency "rspec-rails", "~> 3.5"
-  s.add_development_dependency "shoulda-callback-matchers", "~> 1.1"
-  s.add_development_dependency "shoulda-matchers", "~> 3.1"
-  s.add_development_dependency "sass-rails"
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency "sqlite3"
 end

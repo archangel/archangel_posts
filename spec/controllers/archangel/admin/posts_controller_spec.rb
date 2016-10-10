@@ -50,7 +50,6 @@ module Archangel
               title: "New Post",
               slug: "new-post",
               content: "Post content.",
-              excerpt: "Post excerpt.",
               author_id: create(:user).id,
               published_at: Time.current
             }

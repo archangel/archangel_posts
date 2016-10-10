@@ -51,8 +51,9 @@ module Archangel
 
       def permitted_attributes
         [
-          :author_id, :content, :excerpt, :feature, :meta_description,
-          :meta_keywords, :published_at, :remove_feature, :slug, :title,
+          :author_id, :content, :feature, :meta_description, :published_at,
+          :remove_feature, :slug, :title,
+          meta_keywords: [],
           category_ids: [],
           tag_ids: []
         ]

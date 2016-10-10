@@ -1,3 +1,13 @@
+require "simplecov"
+
+SimpleCov.start :rails do
+  add_filter "install_generator.rb"
+  add_filter "version.rb"
+
+  add_group "Policies", "app/policies"
+  add_group "Uploaders", "app/uploaders"
+end
+
 ENV["RAILS_ENV"] ||= "test"
 
 begin
@@ -23,7 +33,7 @@ Dir[Rails.root.join("../support/**/*.rb")].each { |f| require f }
 # Archangel support files
 require "archangel/testing_support/support"
 
-# Requires factories defined in lib/archangel_posts/factories.rb
+# Required factories defined in lib/archangel_posts/factories.rb
 require "archangel_posts/factories"
 
 RSpec.configure do |config|

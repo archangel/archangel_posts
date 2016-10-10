@@ -10,7 +10,6 @@ module Archangel
       it { expect(subject).to validate_presence_of(:title) }
 
       it { expect(subject).to allow_value("").for(:content) }
-      it { expect(subject).to allow_value("").for(:excerpt) }
 
       it do
         expect(subject).to allow_value("2016-01-01 00:00:00").for(:published_at)

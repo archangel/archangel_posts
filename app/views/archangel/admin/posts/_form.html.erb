@@ -1,5 +1,4 @@
-<%= simple_form_for([:admin, @post],
-                    html: { class: "form-vertical" }) do |f| %>
+<%= simple_form_for([:admin, @post]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -12,24 +11,28 @@
       <%= f.association :author, as: :select %>
     <% end %>
 
-    <%= f.input :excerpt, as: :text %>
-    <%= f.input :content, as: :text %>
-    <%= f.input :meta_keywords %>
+    <%= f.input :content, as: :wysiwyg %>
+    <%= f.association :categories, as: :categories, input_html: { multiple: true } %>
+    <%= f.association :tags, as: :tags, input_html: { multiple: true } %>
+    <%= f.input :meta_keywords, as: :meta_keywords, input_html: { multiple: true } %>
     <%= f.input :meta_description %>
-
-    <%= image_tag(f.object.feature.thumb.url) %>
-
     <%= f.input :feature, as: :file %>
-    <%= f.input :feature_cache, as: :hidden %>
 
+    <div class="form-group user_avatar_image">
+      <div class="col-sm-10 col-sm-offset-2">
+        <%= image_tag(f.object.feature.thumb.url, alt: "") %>
+      </div>
+    </div>
+
+    <%= f.input :feature_cache, as: :hidden %>
     <%= f.input :remove_feature, as: :boolean,
-                              checked_value: true,
-                              unchecked_value: false if f.object.feature? %>
+                                 checked_value: true,
+                                 unchecked_value: false if f.object.feature? %>
 
     <%= f.input :published_at, as: :date_time_picker, input_html: { value: datetimepicker_field_value(f.object.published_at, f.object.new_record?) } %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions text-right">
     <%= f.button :submit %>
   </div>
 <% end %>

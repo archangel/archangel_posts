@@ -22,25 +22,32 @@ Archangel::Engine.routes.draw do
   scope "blog" do
     # GET /blog
     # GET /blog/page/[PAGE]
-    get "/", to: "posts#index", as: :posts, concerns: [:paginatable]
+    get "/(page/:page)", to: "posts#index", as: :posts
 
     # GET /blog/[YYYY]
     # GET /blog/[YYYY]/page/[PAGE]
-    get "/:year", to: "posts#index",
+    get "/:year(/page/:page)", to: "posts#index",
                   as: :posts_year,
-                  constraints: { year: /\d{4}/ },
-                  concerns: [:paginatable]
+                  constraints: { year: /\d{4}/ }
 
     # GET /blog/[YYYY]/[MM]
     # GET /blog/[YYYY]/[MM]/page/[PAGE]
-    get "/:year/:month", to: "posts#index",
+    get "/:year/:month(/page/:page)", to: "posts#index",
                          as: :posts_year_month,
-                         constraints: { year: /\d{4}/, month: /\d{2}/ },
-                         concerns: [:paginatable]
+                         constraints: { year: /\d{4}/, month: /\d{2}/ }
 
     # GET /blog/[YYYY]/[MM]/[SLUG]
     get "/:year/:month/:slug", to: "posts#show",
                                as: :post,
                                constraints: { year: /\d{4}/, month: /\d{2}/ }
+
+     # GET /blog/category/[SLUG]
+     # GET /blog/category/[SLUG]/page/[PAGE]
+     get "/category/:slug(/page/:page)", to: "posts#category",
+                                             as: :posts_category
+
+     # GET /blog/tag/[SLUG]
+     # GET /blog/tag/[SLUG]/page/[PAGE]
+     get "/tag/:slug(/page/:page)", to: "posts#tag", as: :posts_tag
   end
 end

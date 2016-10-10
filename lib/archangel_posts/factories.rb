@@ -4,7 +4,6 @@ FactoryGirl.define do
     sequence(:title) { |n| "Post #{n} Title" }
     sequence(:slug) { |n| "post-#{n}-title" }
     content "Content of the post"
-    excerpt "Excerpt of the post"
     meta_keywords "very, useful, keywords"
     meta_description "This is the default description of the post."
     published_at { Time.current }

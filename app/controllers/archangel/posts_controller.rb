@@ -1,22 +1,38 @@
 module Archangel
   class PostsController < ApplicationController
-    before_action :set_post, except: [:index]
+    before_action :set_post, only: [:show]
 
     helper Archangel::Admin::PostsHelper
 
     def index
-      @posts = Archangel::Post.published
+      @posts = Archangel::Post.published.page(params[:page]).per(per_page)
 
       @posts.in_year(params[:year]) if params[:year]
       @posts.in_month(params[:month]) if params[:month]
 
-      @posts.page(params[:page]).per(per_page)
+      respond_with @posts
+    end
 
-      respond_with @posts if stale?(etag: @posts)
+    def tag
+      @posts = Archangel::Post.published
+                              .with_tag(params[:slug])
+                              .page(params[:page])
+                              .per(per_page)
+
+      respond_with @posts
+    end
+
+    def category
+      @posts = Archangel::Post.published
+                              .with_category(params[:slug])
+                              .page(params[:page])
+                              .per(per_page)
+
+      respond_with @posts
     end
 
     def show
-      respond_with @post if stale?(etag: @post, last_modified: @post.updated_at)
+      respond_with @post
     end
 
     protected

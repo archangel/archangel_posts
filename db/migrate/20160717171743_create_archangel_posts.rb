@@ -5,7 +5,6 @@ class CreateArchangelPosts < ActiveRecord::Migration[5.0]
       t.string :path
       t.string :slug
       t.integer :author_id
-      t.text :excerpt, default: ""
       t.text :content, default: ""
       t.string :meta_keywords
       t.string :meta_description
